@@ -55,7 +55,7 @@ public class CategoryRestController {
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = CategoriesResponse.class))),
             @ApiResponse(responseCode = "404", description = "Category not found", content = @Content)
     })
-    @GetMapping("/{number}")
+    @GetMapping("/")
     public ResponseEntity<CategoriesResponse> getCategoryFromCategories(@Parameter(description = "Name of the category to be returned")
                                                                  @PathVariable(name = "name") String name) {
         return ResponseEntity.ok(categoryHandler.getCategoryFromCategories(name));
