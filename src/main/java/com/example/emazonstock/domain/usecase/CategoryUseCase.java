@@ -21,22 +21,6 @@ public class CategoryUseCase implements ICategoryServicePort {
     }
 
     @Override
-    public void saveCategory(Category category) {
-
-        if(categoryPersistencePort.getCategory(category.getName()) != null){
-            throw new AlreadyDeclaredValueException(FIELD_ALREADY_DECLARED_VALUE);
-        }
-        if(category.getName().length() > 50){throw new MaximumLengthException(FIELD_MAX_LENGTH);}
-
-        if(category.getDescription().trim().isEmpty()){
-            throw new DescriptionRequiredException(FIELD_VALUE_REQUIRED);
-        }
-        if(category.getDescription().length() > 90){throw new MaximumLengthException(FIELD_MAX_LENGTH);}
-
-        categoryPersistencePort.saveCategory(category);
-    }
-
-    @Override
     public List<Category> getAllCategories() {
         return categoryPersistencePort.getAllCategories();
     }
@@ -53,6 +37,24 @@ public class CategoryUseCase implements ICategoryServicePort {
 
     @Override
     public void deleteCategory(String name) {
+        categoryPersistencePort.deleteCategory(name);
+    }
 
+    @Override
+    public void saveCategory(Category category) {
+
+        if(categoryPersistencePort.getCategory(category.getName()) != null){
+            throw new AlreadyDeclaredValueException("This Category " + FIELD_ALREADY_DECLARED_VALUE);
+        }
+        if(category.getName().length() > 50){throw new MaximumLengthException("Name " + FIELD_MAX_LENGTH);}
+
+        if(category.getDescription().trim().isEmpty()){
+            throw new DescriptionRequiredException("Description " + FIELD_VALUE_REQUIRED);
+        }
+        if(category.getDescription().length() > 90){
+            throw new MaximumLengthException("Description " + FIELD_MAX_LENGTH);
+        }
+
+        categoryPersistencePort.saveCategory(category);
     }
 }
