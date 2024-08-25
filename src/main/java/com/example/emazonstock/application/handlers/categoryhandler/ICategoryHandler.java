@@ -1,4 +1,4 @@
-package com.example.emazonstock.application.handlers.categoryHandler;
+package com.example.emazonstock.application.handlers.categoryhandler;
 
 import com.example.emazonstock.application.dto.request.CategoriesRequest;
 import com.example.emazonstock.application.dto.response.CategoriesResponse;

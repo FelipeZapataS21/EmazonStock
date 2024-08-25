@@ -1,4 +1,4 @@
-package com.example.emazonstock.infrastructure.exceptionHandler;
+package com.example.emazonstock.infrastructure.exceptionhandler;
 
 import com.example.emazonstock.infrastructure.exception.CategoryAlreadyExist;
 import com.example.emazonstock.infrastructure.exception.CategoryNotFound;

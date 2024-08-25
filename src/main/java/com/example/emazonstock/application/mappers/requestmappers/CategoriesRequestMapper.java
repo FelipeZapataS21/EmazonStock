@@ -1,4 +1,4 @@
-package com.example.emazonstock.application.mappers.requestMappers;
+package com.example.emazonstock.application.mappers.requestmappers;
 
 
 import com.example.emazonstock.application.dto.request.CategoriesRequest;

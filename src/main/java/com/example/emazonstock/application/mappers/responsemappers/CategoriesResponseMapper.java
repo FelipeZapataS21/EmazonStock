@@ -1,4 +1,4 @@
-package com.example.emazonstock.application.mappers.responseMappers;
+package com.example.emazonstock.application.mappers.responsemappers;
 
 import com.example.emazonstock.application.dto.response.CategoriesResponse;
 import com.example.emazonstock.domain.model.Category;

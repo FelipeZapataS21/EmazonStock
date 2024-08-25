@@ -1,9 +1,9 @@
-package com.example.emazonstock.application.handlers.categoryHandler;
+package com.example.emazonstock.application.handlers.categoryhandler;
 
 import com.example.emazonstock.application.dto.request.CategoriesRequest;
 import com.example.emazonstock.application.dto.response.CategoriesResponse;
-import com.example.emazonstock.application.mappers.requestMappers.CategoriesRequestMapper;
-import com.example.emazonstock.application.mappers.responseMappers.CategoriesResponseMapper;
+import com.example.emazonstock.application.mappers.requestmappers.CategoriesRequestMapper;
+import com.example.emazonstock.application.mappers.responsemappers.CategoriesResponseMapper;
 import com.example.emazonstock.domain.api.ICategoryServicePort;
 import com.example.emazonstock.domain.model.Category;
 import lombok.RequiredArgsConstructor;

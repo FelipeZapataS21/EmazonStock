@@ -2,7 +2,7 @@ package com.example.emazonstock.infrastructure.input.rest;
 
 import com.example.emazonstock.application.dto.request.CategoriesRequest;
 import com.example.emazonstock.application.dto.response.CategoriesResponse;
-import com.example.emazonstock.application.handlers.categoryHandler.ICategoryHandler;
+import com.example.emazonstock.application.handlers.categoryhandler.ICategoryHandler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

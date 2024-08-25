@@ -25,6 +25,7 @@ class CategoryUseCaseTest {
     }
 
     @Test void testSaveCategoryAlreadyDeclaredValueException(){
+        //Given
         Category category = DataProvider.newCategoryMock(1L,"Gamer Laptops","Good technology");
 
         //When

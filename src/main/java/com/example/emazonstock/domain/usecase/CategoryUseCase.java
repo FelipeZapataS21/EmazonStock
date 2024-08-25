@@ -6,7 +6,6 @@ import com.example.emazonstock.domain.spi.ICategoryPersistencePort;
 
 import java.util.List;
 
-import static com.example.emazonstock.domain.utils.DomainConstants.*;
 import static com.example.emazonstock.domain.utils.ValidationFunctions.*;
 
 
