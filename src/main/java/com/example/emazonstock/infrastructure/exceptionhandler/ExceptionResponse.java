@@ -1,8 +1,8 @@
 package com.example.emazonstock.infrastructure.exceptionhandler;
 
 public enum ExceptionResponse {
-    CATEGORY_NOT_FOUND("No Pokemon was found with that number"),
-    CATEGORY_ALREADY_EXISTS("There is already a pokemon with that number"),
+    CATEGORY_NOT_FOUND("No Category was found with that name"),
+    CATEGORY_ALREADY_EXISTS("There is already a category with that name"),
     NO_DATA_FOUND("No data found for the requested petition");
 
     private final String message;

@@ -13,6 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CategoriesRequest {
 
+    @NotNull(message = "Name of Category cannot be empty")
     @Size(min = 1, max = 50, message = "The name of the category cannot be longer than 50 characters")
     private String name;
 

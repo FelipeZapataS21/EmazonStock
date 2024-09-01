@@ -1,13 +1,13 @@
 package com.example.emazonstock.domain.usecase;
 
 import com.example.emazonstock.domain.api.ICategoryServicePort;
+import com.example.emazonstock.domain.exceptions.AlreadyDeclaredValueException;
 import com.example.emazonstock.domain.model.Category;
 import com.example.emazonstock.domain.spi.ICategoryPersistencePort;
 
 import java.util.List;
 
-import static com.example.emazonstock.domain.utils.ValidationFunctions.*;
-
+import static com.example.emazonstock.domain.utils.DomainConstants.*;
 
 public class CategoryUseCase implements ICategoryServicePort {
 
@@ -15,6 +15,16 @@ public class CategoryUseCase implements ICategoryServicePort {
 
     public CategoryUseCase(ICategoryPersistencePort categoryPersistencePort) {
         this.categoryPersistencePort = categoryPersistencePort;
+    }
+
+    @Override
+    public void saveCategory(Category category) {
+
+        if (categoryPersistencePort.getCategory(category.getName()) != null) {
+            throw new AlreadyDeclaredValueException(FIELD_ALREADY_DECLARED_VALUE);
+        }
+
+        categoryPersistencePort.saveCategory(category);
     }
 
     @Override
@@ -37,11 +47,4 @@ public class CategoryUseCase implements ICategoryServicePort {
         categoryPersistencePort.deleteCategory(name);
     }
 
-    @Override
-    public void saveCategory(Category category) {
-
-        alreadyDeclaredValueValidation(categoryPersistencePort.getCategory(category.getName()).getName());
-
-        categoryPersistencePort.saveCategory(category);
-    }
 }

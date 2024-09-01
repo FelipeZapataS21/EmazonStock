@@ -37,7 +37,7 @@ class CategoryHandlerTest {
 
         when(categoriesRequestMapper.toCategory(any(CategoriesRequest.class))).thenReturn(category);
 
-        // When
+        // When 
         categoryHandler.saveCategoryInCategories(categoriesRequest);
 
         // Then

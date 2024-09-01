@@ -2,9 +2,14 @@ package com.example.emazonstock.application.mappers.responsemappers;
 
 import com.example.emazonstock.application.dto.response.CategoriesResponse;
 import com.example.emazonstock.domain.model.Category;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
+@Mapper(componentModel = "spring",
+        unmappedSourcePolicy = ReportingPolicy.IGNORE,
+        unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CategoriesResponseMapper {
 
     CategoriesResponse toResponse(Category category);

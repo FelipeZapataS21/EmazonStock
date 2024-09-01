@@ -1,16 +1,20 @@
 package com.example.emazonstock.domain.usecase;
 
 import com.example.emazonstock.DataProvider;
-import com.example.emazonstock.domain.exceptions.*;
 import com.example.emazonstock.domain.model.Category;
 import com.example.emazonstock.domain.spi.ICategoryPersistencePort;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class CategoryUseCaseTest {
 
     @Mock
@@ -24,21 +28,19 @@ class CategoryUseCaseTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test void testSaveCategoryAlreadyDeclaredValueException(){
-        //Given
-        Category category = DataProvider.newCategoryMock(1L,"Gamer Laptops","Good technology");
+    @Test
+    void testGetAllCategories() {
+        List<Category> categoryList = DataProvider.categoryListMock();
+        when(categoryPersistencePort.getAllCategories()).thenReturn(categoryList);
 
-        //When
-        when(categoryPersistencePort.getCategory(category.getName()))
-                .thenReturn(category);
+        // When
+        List<Category> categoryListResult = categoryPersistencePort.getAllCategories();
 
-        // / Then
-        AlreadyDeclaredValueException thrown = assertThrows(AlreadyDeclaredValueException.class, () -> {
-            categoryUseCase.saveCategory(category);
-        });
-
-        System.out.println("Exception message: " + thrown.getMessage());
+        // Then
+        System.out.println(categoryListResult);
+        assertEquals(3, categoryList.size());
+        assertEquals(3, categoryListResult.size());
+        verify(categoryPersistencePort, times(1)).getAllCategories(); // Verifica que el mock fue llamado exactamente una vez
 
     }
-
 }

@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/categories")
 @RequiredArgsConstructor
-
-public class CategoryRestController {
+public class CategoryRestController{
 
     private final ICategoryHandler categoryHandler;
 
@@ -30,9 +30,8 @@ public class CategoryRestController {
             @ApiResponse(responseCode = "201", description = "Category created", content = @Content),
             @ApiResponse(responseCode = "409", description = "Category already exists", content = @Content)
     })
-
     @PostMapping("/")
-    public ResponseEntity<Void> saveCategoryInCategories(@RequestBody CategoriesRequest categoriesRequest) {
+    public ResponseEntity<Void> saveCategoryInCategories(@Valid @RequestBody CategoriesRequest categoriesRequest) {
         categoryHandler.saveCategoryInCategories(categoriesRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -45,6 +44,7 @@ public class CategoryRestController {
             @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
     })
     @GetMapping("/")
+    /*En esta parte ira la paginacion,getAllCategoriesFromCategories(page, size, sort) */
     public ResponseEntity<List<CategoriesResponse>> getAllCategoriesInCategories() {
         return ResponseEntity.ok(categoryHandler.getAllCategoriesFromCategories());
     }
@@ -55,9 +55,10 @@ public class CategoryRestController {
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = CategoriesResponse.class))),
             @ApiResponse(responseCode = "404", description = "Category not found", content = @Content)
     })
-    @GetMapping("/")
-    public ResponseEntity<CategoriesResponse> getCategoryFromCategories(@Parameter(description = "Name of the category to be returned")
-                                                                 @PathVariable(name = "name") String name) {
+    @GetMapping("/{name}")
+    public ResponseEntity<CategoriesResponse> getCategoryFromCategories(
+            @Parameter(description = "Name of the category to be returned")
+            @PathVariable(name = "name") String name) {
         return ResponseEntity.ok(categoryHandler.getCategoryFromCategories(name));
     }
 
