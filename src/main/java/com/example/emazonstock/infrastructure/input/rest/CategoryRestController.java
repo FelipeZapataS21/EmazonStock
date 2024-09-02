@@ -59,7 +59,7 @@ public class CategoryRestController{
     public ResponseEntity<CategoriesResponse> getCategoryFromCategories(
             @Parameter(description = "Name of the category to be returned")
             @PathVariable(name = "name") String name) {
-        return ResponseEntity.ok(categoryHandler.getCategoryFromCategories(name));
+        return ResponseEntity.ok(categoryHandler.getCategoryFromCategories(name.trim()));
     }
 
     @Operation(summary = "Update an existing category")
@@ -80,7 +80,7 @@ public class CategoryRestController{
     })
     @DeleteMapping("/{name}")
     public ResponseEntity<Void> deleteCategoryFromCategories(@PathVariable String name) {
-        categoryHandler.deleteCategoryFromCategories(name);
+        categoryHandler.deleteCategoryFromCategories(name.trim());
         return ResponseEntity.noContent().build();
     }
 }

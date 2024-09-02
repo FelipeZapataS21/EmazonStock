@@ -8,8 +8,8 @@ public class Category{
 
     public Category(Long categoryId, String name, String description){
         this.categoryId = categoryId;
-        this.name = name;
-        this.description = description;
+        this.name = name.trim();
+        this.description = description.trim();
     }
 
     public Long getCategoryId() {
