@@ -39,16 +39,4 @@ public class CategoryHandler implements ICategoryHandler{
         return categoriesResponseMapper.toResponse(category);
     }
 
-    @Override
-    public void updateCategoryFromCategories(CategoriesRequest categoriesRequest) {
-        Category oldCategory = categoryServicePort.getCategory(categoriesRequest.getName());
-        Category newCategory = categoriesRequestMapper.toCategory(categoriesRequest);
-        newCategory.setCategoryId(oldCategory.getCategoryId());
-        categoryServicePort.updateCategory(newCategory);
-    }
-
-    @Override
-    public void deleteCategoryFromCategories(String name) {
-        categoryServicePort.deleteCategory(name);
-    }
 }

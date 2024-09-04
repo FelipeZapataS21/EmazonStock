@@ -7,18 +7,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static com.example.emazonstock.application.utils.DtoCategoryConstants.*;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoriesRequest {
 
-    @NotNull(message = "Name of Category cannot be empty")
-    @Size(min = 1, max = 50, message = "The category name cannot be empty or longer than 50 characters.")
+    @NotNull(message = VALIDATION_NULL_DTO)
+    @Size(min = 1, max = 50, message = VALIDATION_CATEGORY_EMPTY_OR_LONGER)
     private String name;
 
-    @NotNull(message = "Description of Category cannot be empty")
-    @Size(min = 1, max = 70, message = "Description of category cannot be empty or longer than 70 characters")
+    @NotNull(message = VALIDATION_NULL_DTO)
+    @Size(min = 1, max = 70, message = VALIDATION_DESCRIPTION_EMPTY_OR_LONGER)
     private String description;
 
 }

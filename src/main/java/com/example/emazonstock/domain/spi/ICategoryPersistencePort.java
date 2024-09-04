@@ -12,7 +12,4 @@ public interface ICategoryPersistencePort {
 
     Category getCategory(String name);
 
-    void updateCategory(Category category);
-
-    void deleteCategory(String name);
 }

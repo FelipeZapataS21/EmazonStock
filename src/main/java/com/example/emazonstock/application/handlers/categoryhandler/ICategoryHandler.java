@@ -12,8 +12,4 @@ public interface ICategoryHandler {
     List<CategoriesResponse> getAllCategoriesFromCategories();
 
     CategoriesResponse getCategoryFromCategories(String name);
-
-    void updateCategoryFromCategories(CategoriesRequest categoriesRequest);
-
-    void deleteCategoryFromCategories(String name);
 }

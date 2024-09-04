@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/category")
 @RequiredArgsConstructor
 public class CategoryRestController{
 
@@ -31,9 +31,9 @@ public class CategoryRestController{
             @ApiResponse(responseCode = "409", description = "Category already exists", content = @Content)
     })
     @PostMapping("/")
-    public ResponseEntity<Void> saveCategoryInCategories(@Valid @RequestBody CategoriesRequest categoriesRequest) {
+    public ResponseEntity<String> saveCategoryInCategories(@Valid @RequestBody CategoriesRequest categoriesRequest) {
         categoryHandler.saveCategoryInCategories(categoriesRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return new ResponseEntity<>("Category has been created succesfully!!", HttpStatus.CREATED);
     }
 
     @Operation(summary = "Get all the categories")
@@ -60,28 +60,6 @@ public class CategoryRestController{
             @Parameter(description = "Name of the category to be returned")
             @PathVariable(name = "name") String name) {
         return ResponseEntity.ok(categoryHandler.getCategoryFromCategories(name.trim()));
-    }
-
-    @Operation(summary = "Update an existing category")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Category updated", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Category not found", content = @Content)
-    })
-    @PutMapping("/")
-    public ResponseEntity<Void> updateCategoryFromCategories(@RequestBody CategoriesRequest categoriesRequest) {
-        categoryHandler.updateCategoryFromCategories(categoriesRequest);
-        return ResponseEntity.noContent().build();
-    }
-
-    @Operation(summary = "Delete a category by their Name")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Category deleted", content = @Content),
-            @ApiResponse(responseCode = "404", description = "Category not found", content = @Content)
-    })
-    @DeleteMapping("/{name}")
-    public ResponseEntity<Void> deleteCategoryFromCategories(@PathVariable String name) {
-        categoryHandler.deleteCategoryFromCategories(name.trim());
-        return ResponseEntity.noContent().build();
     }
 }
 

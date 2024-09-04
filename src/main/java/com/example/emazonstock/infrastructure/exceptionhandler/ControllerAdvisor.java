@@ -1,11 +1,8 @@
 package com.example.emazonstock.infrastructure.exceptionhandler;
 
-import static com.example.emazonstock.infrastructure.utils.InfrastructureConstants.*;
+import static com.example.emazonstock.infrastructure.utils.ExceptionConstants.*;
 import com.example.emazonstock.domain.exceptions.AlreadyDeclaredValueException;
 import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
-import com.example.emazonstock.infrastructure.exception.CategoryAlreadyExist;
-import com.example.emazonstock.infrastructure.exception.CategoryNotFound;
-import com.example.emazonstock.infrastructure.exception.NoDataFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -32,28 +29,7 @@ public class ControllerAdvisor {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
-    }
-
-    @ExceptionHandler(CategoryAlreadyExist.class)
-    public ResponseEntity<Map<String, String>> handleCategoryAlreadyExistsException(
-            CategoryAlreadyExist categoryAlreadyExistsException) {
-        return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(Collections.singletonMap(MESSAGE, EXCEPTION_CATEGORY_ALREADY_EXISTS));
-    }
-
-    @ExceptionHandler(NoDataFoundException.class)
-    public ResponseEntity<Map<String, String>> handleNoDataFoundException(
-            NoDataFoundException noDataFoundException) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Collections.singletonMap(MESSAGE, EXCEPTION_NO_DATA_FOUND));
-    }
-
-    @ExceptionHandler(CategoryNotFound.class)
-    public ResponseEntity<Map<String, String>> handleCategoryNotFound(
-            CategoryNotFound categoryNotFoundException) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Collections.singletonMap(MESSAGE, EXCEPTION_CATEGORY_NOT_FOUND));
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errors);
     }
 
     @ExceptionHandler(ValueDoesNotExist.class)
@@ -66,7 +42,7 @@ public class ControllerAdvisor {
     @ExceptionHandler(AlreadyDeclaredValueException.class)
     public ResponseEntity<Map<String, String>> handleAlreadyDeclaredValueException(
             AlreadyDeclaredValueException alreadyDeclaredValueException) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(MESSAGE, EXCEPTION_VALUE_ALREADY_EXIST));
     }
 
