@@ -9,7 +9,5 @@ public interface ICategoryHandler {
 
     void saveCategoryInCategories(CategoriesRequest categoriesRequest);
 
-    List<CategoriesResponse> getAllCategoriesFromCategories();
-
     CategoriesResponse getCategoryFromCategories(String name);
 }

@@ -6,8 +6,6 @@ import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
 import com.example.emazonstock.domain.model.Category;
 import com.example.emazonstock.domain.spi.ICategoryPersistencePort;
 
-import java.util.List;
-
 public class CategoryUseCase implements ICategoryServicePort {
 
     private final ICategoryPersistencePort categoryPersistencePort;
@@ -24,11 +22,6 @@ public class CategoryUseCase implements ICategoryServicePort {
         }
 
         categoryPersistencePort.saveCategory(category);
-    }
-
-    @Override
-    public List<Category> getAllCategories() {
-        return categoryPersistencePort.getAllCategories();
     }
 
     @Override

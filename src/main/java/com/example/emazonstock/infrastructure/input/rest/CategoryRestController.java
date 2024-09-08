@@ -1,8 +1,12 @@
 package com.example.emazonstock.infrastructure.input.rest;
 
 import com.example.emazonstock.application.dto.request.CategoriesRequest;
+import com.example.emazonstock.application.dto.request.PageResultRequest;
 import com.example.emazonstock.application.dto.response.CategoriesResponse;
+import com.example.emazonstock.application.dto.response.PageResultResponse;
 import com.example.emazonstock.application.handlers.categoryhandler.ICategoryHandler;
+import com.example.emazonstock.application.handlers.pageresponsehandler.IPageResultHandler;
+import com.example.emazonstock.domain.model.Category;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -25,6 +29,8 @@ public class CategoryRestController{
 
     private final ICategoryHandler categoryHandler;
 
+    private final IPageResultHandler pageResultHandler;
+
     @Operation(summary = "Add a new category")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Category created", content = @Content),
@@ -44,9 +50,17 @@ public class CategoryRestController{
             @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
     })
     @GetMapping("/")
-    /*En esta parte ira la paginacion,getAllCategoriesFromCategories(page, size, sort) */
-    public ResponseEntity<List<CategoriesResponse>> getAllCategoriesInCategories() {
-        return ResponseEntity.ok(categoryHandler.getAllCategoriesFromCategories());
+    public ResponseEntity<PageResultResponse<Category>> getAllCategoriesInCategories(
+            @RequestParam int totalPages,
+            @RequestParam int pageSize,
+            @RequestParam String sort
+    ){
+        PageResultRequest pageResultRequest = new PageResultRequest();
+        pageResultRequest.setTotalPages(totalPages);
+        pageResultRequest.setPageSize(pageSize);
+        pageResultRequest.setSort(sort);
+
+        return ResponseEntity.ok(pageResultHandler.createPageableResponseForCategory(pageResultRequest));
     }
 
     @Operation(summary = "Get a category by their name")

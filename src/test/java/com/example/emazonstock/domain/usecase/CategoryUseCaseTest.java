@@ -52,7 +52,7 @@ class CategoryUseCaseTest {
         verify(categoryPersistencePort, never()).saveCategory(any(Category.class));
     }
 
-    @Test
+    /*@Test
     void getAllCategoriesTest() {
         // GIVEN
         List<Category> categoryList = List.of(
@@ -71,7 +71,7 @@ class CategoryUseCaseTest {
                 .hasSize(3)
                 .containsExactlyInAnyOrderElementsOf(categoryList);
         verify(categoryPersistencePort, times(1)).getAllCategories();
-    }
+    }*/
 
     @Test
     void getCategoryTest() {

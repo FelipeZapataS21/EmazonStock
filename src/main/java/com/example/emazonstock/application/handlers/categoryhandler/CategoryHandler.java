@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -28,10 +26,6 @@ public class CategoryHandler implements ICategoryHandler{
         categoryServicePort.saveCategory(category);
     }
 
-    @Override
-    public List<CategoriesResponse> getAllCategoriesFromCategories() {
-        return categoriesResponseMapper.toResponseList(categoryServicePort.getAllCategories());
-    }
 
     @Override
     public CategoriesResponse getCategoryFromCategories(String categoryName) {

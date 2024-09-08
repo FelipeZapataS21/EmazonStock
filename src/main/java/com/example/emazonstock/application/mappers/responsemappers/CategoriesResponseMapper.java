@@ -3,6 +3,7 @@ package com.example.emazonstock.application.mappers.responsemappers;
 import com.example.emazonstock.application.dto.response.CategoriesResponse;
 import com.example.emazonstock.domain.model.Category;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.List;
         unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CategoriesResponseMapper {
 
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "description", target = "description")
     CategoriesResponse toResponse(Category category);
 
     default List<CategoriesResponse> toResponseList(List<Category> categoriesList){
