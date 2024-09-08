@@ -1,8 +1,8 @@
 package com.example.emazonstock.infrastructure.input.rest;
 
 import com.example.emazonstock.application.dto.request.CategoriesRequest;
-import com.example.emazonstock.application.dto.request.PageResultRequest;
 import com.example.emazonstock.application.dto.response.CategoriesResponse;
+import com.example.emazonstock.application.dto.request.PageResultRequest;
 import com.example.emazonstock.application.dto.response.PageResultResponse;
 import com.example.emazonstock.application.handlers.categoryhandler.ICategoryHandler;
 import com.example.emazonstock.domain.model.Category;
@@ -46,12 +46,12 @@ public class CategoryRestController{
     })
     @GetMapping("/")
     public ResponseEntity<PageResultResponse<Category>> getAllCategoriesInCategories(
-            @RequestParam int totalPages,
+            @RequestParam int currentPage,
             @RequestParam int pageSize,
             @RequestParam String sort
     ){
         PageResultRequest pageResultRequest = new PageResultRequest();
-        pageResultRequest.setTotalPages(totalPages);
+        pageResultRequest.setCurrentPage(currentPage);
         pageResultRequest.setPageSize(pageSize);
         pageResultRequest.setSort(sort);
 

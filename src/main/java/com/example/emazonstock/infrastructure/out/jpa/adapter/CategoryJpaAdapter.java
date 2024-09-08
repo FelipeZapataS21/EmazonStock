@@ -1,6 +1,5 @@
 package com.example.emazonstock.infrastructure.out.jpa.adapter;
 
-import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
 import com.example.emazonstock.domain.model.Category;
 import com.example.emazonstock.domain.model.PageResult;
 import com.example.emazonstock.domain.spi.ICategoryPersistencePort;
@@ -34,17 +33,10 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort{
     }
 
     @Override
-    public PageResult<Category> getPagedCategories(int page, int sizePage, String order) {
-        Sort.Direction direction;
-        try {
-            direction = Sort.Direction.fromString(order);
-        } catch (IllegalArgumentException e) {
-            throw new ValueDoesNotExist(); // Maneja valores inválidos
-        }
-        Sort sort = Sort.by(direction, "name");
-        Pageable pageable = PageRequest.of(page, sizePage, sort);
+    public PageResult<Category> getPagedCategories(int currentPage, int sizePage, String order) {
+        Sort sort = Sort.by(Sort.Direction.fromString(order), "name");
+        Pageable pageable = PageRequest.of(currentPage, sizePage, sort);
         Page<CategoryEntity> categoryEntityPage = categoryRepository.findAll(pageable);
-
         List<Category> categoryList = categoryEntityMapper.toCategoryList(categoryEntityPage.getContent());
 
         return new PageResult<>(

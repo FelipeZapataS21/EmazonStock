@@ -34,8 +34,8 @@ public class CategoryUseCase implements ICategoryServicePort {
     }
 
     @Override
-    public PageResult<Category> getPagedCategories(int page, int sizePage, String sort) {
-        return categoryPersistencePort.getPagedCategories(page, sizePage, sort);
+    public PageResult<Category> getPagedCategories(int currentPage, int sizePage, String sort) {
+        return categoryPersistencePort.getPagedCategories(currentPage, sizePage, sort);
     }
 
 }

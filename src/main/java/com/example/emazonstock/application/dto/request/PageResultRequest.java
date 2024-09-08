@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PageResultRequest {
 
-    private int totalPages;
+    private int currentPage;
     private int pageSize;
     private String sort;
 }

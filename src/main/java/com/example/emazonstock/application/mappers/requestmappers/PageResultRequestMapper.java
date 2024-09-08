@@ -12,7 +12,7 @@ import org.mapstruct.ReportingPolicy;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface PageResultRequestMapper {
 
-    @Mapping(source = "totalPages", target = "totalPages")
+    @Mapping(source = "currentPage", target = "currentPage")
     @Mapping(source = "pageSize", target = "pageSize")
     @Mapping(source = "sort", target = "sort")
     PageResult<Category> toCategoryPageResult(PageResultRequest pageResultRequest);
