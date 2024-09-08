@@ -5,7 +5,6 @@ import com.example.emazonstock.application.dto.request.PageResultRequest;
 import com.example.emazonstock.application.dto.response.CategoriesResponse;
 import com.example.emazonstock.application.dto.response.PageResultResponse;
 import com.example.emazonstock.application.handlers.categoryhandler.ICategoryHandler;
-import com.example.emazonstock.application.handlers.pageresponsehandler.IPageResultHandler;
 import com.example.emazonstock.domain.model.Category;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -20,16 +19,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/category")
 @RequiredArgsConstructor
 public class CategoryRestController{
 
     private final ICategoryHandler categoryHandler;
-
-    private final IPageResultHandler pageResultHandler;
 
     @Operation(summary = "Add a new category")
     @ApiResponses(value = {
@@ -60,7 +55,7 @@ public class CategoryRestController{
         pageResultRequest.setPageSize(pageSize);
         pageResultRequest.setSort(sort);
 
-        return ResponseEntity.ok(pageResultHandler.createPageableResponseForCategory(pageResultRequest));
+        return ResponseEntity.ok(categoryHandler.createPageableResponseForCategory(pageResultRequest));
     }
 
     @Operation(summary = "Get a category by their name")

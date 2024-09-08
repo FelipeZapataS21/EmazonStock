@@ -4,6 +4,7 @@ import com.example.emazonstock.domain.api.ICategoryServicePort;
 import com.example.emazonstock.domain.exceptions.AlreadyDeclaredValueException;
 import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
 import com.example.emazonstock.domain.model.Category;
+import com.example.emazonstock.domain.model.PageResult;
 import com.example.emazonstock.domain.spi.ICategoryPersistencePort;
 
 public class CategoryUseCase implements ICategoryServicePort {
@@ -30,6 +31,11 @@ public class CategoryUseCase implements ICategoryServicePort {
             throw new ValueDoesNotExist();
         }
         return categoryPersistencePort.getCategory(name);
+    }
+
+    @Override
+    public PageResult<Category> getPagedCategories(int page, int sizePage, String sort) {
+        return categoryPersistencePort.getPagedCategories(page, sizePage, sort);
     }
 
 }

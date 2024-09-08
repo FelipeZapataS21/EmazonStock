@@ -9,4 +9,6 @@ public interface ICategoryServicePort {
 
     Category getCategory(String name);
 
+    PageResult<Category> getPagedCategories(int page, int sizePage, String sort);
+
 }
