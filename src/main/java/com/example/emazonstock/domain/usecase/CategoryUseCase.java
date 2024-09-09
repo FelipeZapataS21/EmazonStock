@@ -38,7 +38,6 @@ public class CategoryUseCase implements ICategoryServicePort {
         return categoryPersistencePort.getPagedCategories(currentPage, sizePage, sort);
     }
 
-    // Que pasa si uno de los valores es null o esta en blanco?
     // Que pasa si esta mal escrito?
     // Que pasa si es un numero lo que se envia en el sort
     // Que pasa si el valor de la lista es vacio?

@@ -17,7 +17,6 @@ public class BeanConfiguration {
     private final ICategoryRepository categoryRepository;
     private final CategoryEntityMapper categoryEntityMapper;
 
-
     @Bean
     public ICategoryPersistencePort categoryPersistencePort(){
         return new CategoryJpaAdapter(categoryRepository, categoryEntityMapper);

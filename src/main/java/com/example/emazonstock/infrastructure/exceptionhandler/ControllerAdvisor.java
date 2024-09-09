@@ -4,7 +4,6 @@ import static com.example.emazonstock.infrastructure.utils.ExceptionConstants.*;
 import com.example.emazonstock.domain.exceptions.AlreadyDeclaredValueException;
 import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
 import com.example.emazonstock.domain.model.Exceptions;
-import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -30,13 +29,14 @@ public class ControllerAdvisor {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        String firstValue = errors.values().stream().findFirst().orElse("Default Value");
+
+        String errorValue = errors.values().stream().findFirst().orElse("Default Value");
         Exceptions exceptions = new Exceptions(
-                HttpStatus.CONFLICT.value(),
-                firstValue,
+                HttpStatus.BAD_REQUEST.value(),
+                errorValue,
                 LocalDateTime.now().toString()
         );
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptions);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptions);
     }
 
     @ExceptionHandler(ValueDoesNotExist.class)
@@ -54,11 +54,11 @@ public class ControllerAdvisor {
     public ResponseEntity<Exceptions> handleAlreadyDeclaredValueException(
             AlreadyDeclaredValueException alreadyDeclaredValueException) {
         Exceptions exceptions = new Exceptions(
-                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.CONFLICT.value(),
                 EXCEPTION_VALUE_ALREADY_EXIST,
                 LocalDateTime.now().toString()
         );
-        return new ResponseEntity<>(exceptions, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptions, HttpStatus.CONFLICT);
     }
 
 }

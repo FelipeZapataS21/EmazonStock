@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import static com.example.emazonstock.application.utils.DtoCategoryConstants.VALIDATION_NULL_DTO;
+import static com.example.emazonstock.application.utils.DtoCategoryConstants.*;
 
 @Getter
 @Setter
@@ -15,12 +15,12 @@ import static com.example.emazonstock.application.utils.DtoCategoryConstants.VAL
 @AllArgsConstructor
 public class PageResultRequest {
 
-    @NotNull(message = VALIDATION_NULL_DTO)
+    @NotNull(message = VALIDATION_NULL_DTO_CURRENT_PAGE)
     private Integer currentPage;
 
-    @NotNull(message = VALIDATION_NULL_DTO)
+    @NotNull(message = VALIDATION_NULL_DTO_PAGE_SIZE)
     private Integer pageSize;
 
-    @NotBlank(message = VALIDATION_NULL_DTO)
+    @NotBlank(message = VALIDATION_NULL_DTO_SORT)
     private String sort;
 }
