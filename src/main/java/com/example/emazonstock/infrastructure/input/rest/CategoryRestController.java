@@ -17,6 +17,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -46,15 +47,8 @@ public class CategoryRestController{
     })
     @GetMapping("/")
     public ResponseEntity<PageResultResponse<Category>> getAllCategoriesInCategories(
-            @RequestParam int currentPage,
-            @RequestParam int pageSize,
-            @RequestParam String sort
+            @Valid @ModelAttribute PageResultRequest pageResultRequest
     ){
-        PageResultRequest pageResultRequest = new PageResultRequest();
-        pageResultRequest.setCurrentPage(currentPage);
-        pageResultRequest.setPageSize(pageSize);
-        pageResultRequest.setSort(sort);
-
         return ResponseEntity.ok(categoryHandler.createPageableResponseForCategory(pageResultRequest));
     }
 

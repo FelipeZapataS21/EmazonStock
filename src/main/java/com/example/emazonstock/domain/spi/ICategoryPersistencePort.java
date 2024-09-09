@@ -9,6 +9,6 @@ public interface ICategoryPersistencePort {
 
     Category getCategory(String name);
 
-    PageResult<Category> getPagedCategories(int page, int sizePage, String sort);
+    PageResult<Category> getPagedCategories(Integer page, Integer sizePage, String sort);
 
 }

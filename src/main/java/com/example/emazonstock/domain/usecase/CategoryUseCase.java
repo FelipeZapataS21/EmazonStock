@@ -34,8 +34,13 @@ public class CategoryUseCase implements ICategoryServicePort {
     }
 
     @Override
-    public PageResult<Category> getPagedCategories(int currentPage, int sizePage, String sort) {
+    public PageResult<Category> getPagedCategories(Integer currentPage, Integer sizePage, String sort) {
         return categoryPersistencePort.getPagedCategories(currentPage, sizePage, sort);
     }
+
+    // Que pasa si uno de los valores es null o esta en blanco?
+    // Que pasa si esta mal escrito?
+    // Que pasa si es un numero lo que se envia en el sort
+    // Que pasa si el valor de la lista es vacio?
 
 }

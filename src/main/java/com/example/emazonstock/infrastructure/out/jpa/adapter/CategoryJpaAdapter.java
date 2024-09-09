@@ -33,7 +33,7 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort{
     }
 
     @Override
-    public PageResult<Category> getPagedCategories(int currentPage, int sizePage, String order) {
+    public PageResult<Category> getPagedCategories(Integer currentPage, Integer sizePage, String order) {
         Sort sort = Sort.by(Sort.Direction.fromString(order), "name");
         Pageable pageable = PageRequest.of(currentPage, sizePage, sort);
         Page<CategoryEntity> categoryEntityPage = categoryRepository.findAll(pageable);

@@ -11,9 +11,9 @@ import java.util.List;
 public class PageResultResponse<T> {
 
     private List<T> data;
-    private int currentPage;
-    private int totalPages;
+    private Integer currentPage;
+    private Integer totalPages;
     private long totalItems;
-    private int pageSize;
+    private Integer pageSize;
     private String sort;
 }
