@@ -1,7 +1,7 @@
 package com.example.emazonstock.infrastructure.exceptionhandler;
 
-import static com.example.emazonstock.infrastructure.utils.ExceptionConstants.*;
 import com.example.emazonstock.domain.exceptions.AlreadyDeclaredValueException;
+import com.example.emazonstock.domain.exceptions.NotValidValuePageSort;
 import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
 import com.example.emazonstock.domain.model.Exceptions;
 import org.springframework.http.HttpStatus;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.example.emazonstock.infrastructure.utils.ControllerAdvisorConstants.*;
 
 @ControllerAdvice
 public class ControllerAdvisor {
@@ -30,7 +32,7 @@ public class ControllerAdvisor {
             errors.put(fieldName, errorMessage);
         });
 
-        String errorValue = errors.values().stream().findFirst().orElse("Default Value");
+        String errorValue = errors.values().stream().findFirst().orElse(DEFAULT_VALUE_FOR_EXCEPTION);
         Exceptions exceptions = new Exceptions(
                 HttpStatus.BAD_REQUEST.value(),
                 errorValue,
@@ -44,7 +46,7 @@ public class ControllerAdvisor {
             ValueDoesNotExist valueDoesNotExist) {
         Exceptions exceptions = new Exceptions(
                 HttpStatus.BAD_REQUEST.value(),
-                EXCEPTION_NO_VALUE_FOUND,
+                valueDoesNotExist.getMessage(),
                 LocalDateTime.now().toString()
         );
         return new ResponseEntity<>(exceptions, HttpStatus.BAD_REQUEST);
@@ -55,7 +57,18 @@ public class ControllerAdvisor {
             AlreadyDeclaredValueException alreadyDeclaredValueException) {
         Exceptions exceptions = new Exceptions(
                 HttpStatus.CONFLICT.value(),
-                EXCEPTION_VALUE_ALREADY_EXIST,
+                alreadyDeclaredValueException.getMessage(),
+                LocalDateTime.now().toString()
+        );
+        return new ResponseEntity<>(exceptions, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(NotValidValuePageSort.class)
+    public ResponseEntity<Exceptions> handleNotValidValue(
+            NotValidValuePageSort notValidValuePageSort) {
+        Exceptions exceptions = new Exceptions(
+                HttpStatus.CONFLICT.value(),
+                notValidValuePageSort.getMessage(),
                 LocalDateTime.now().toString()
         );
         return new ResponseEntity<>(exceptions, HttpStatus.CONFLICT);
