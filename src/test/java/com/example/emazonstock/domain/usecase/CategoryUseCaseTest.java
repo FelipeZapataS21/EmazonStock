@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.emazonstock.domain.utils.ExceptionsConstants.EXCEPTION_NOT_VALID_VALUE_PAGE_SORT;
+import static com.example.emazonstock.domain.utils.Constants.ExceptionsConstants.EXCEPTION_NOT_VALID_VALUE_PAGE_SORT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

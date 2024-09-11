@@ -1,4 +1,4 @@
-package com.example.emazonstock.domain.utils;
+package com.example.emazonstock.domain.utils.Constants;
 
 public class UseCaseCategoryConstants {
 
