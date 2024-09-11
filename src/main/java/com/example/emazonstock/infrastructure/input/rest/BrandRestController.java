@@ -1,10 +1,14 @@
 package com.example.emazonstock.infrastructure.input.rest;
 
 import com.example.emazonstock.application.dto.request.BrandsRequest;
+import com.example.emazonstock.application.dto.request.PageResultRequest;
 import com.example.emazonstock.application.dto.response.BrandsResponse;
+import com.example.emazonstock.application.dto.response.PageResultResponse;
 import com.example.emazonstock.application.handlers.brandhandler.IBrandHandler;
+import com.example.emazonstock.domain.model.Brand;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -31,6 +35,20 @@ public class BrandRestController {
     public ResponseEntity<String> saveBrandInBrands(@Valid @RequestBody BrandsRequest brandsRequest) {
         brandHandler.saveBrandInBrands(brandsRequest);
         return new ResponseEntity<>("Brand has been created succesfully!!", HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Get all the brands")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All brands returned",
+                    content = @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = BrandsResponse.class)))),
+            @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
+    })
+    @GetMapping("/")
+    public ResponseEntity<PageResultResponse<Brand>> getAllBrandsInBrands(
+            @Valid @ModelAttribute PageResultRequest pageResultRequest
+    ){
+        return ResponseEntity.ok(brandHandler.createPageableResponseForBrand(pageResultRequest));
     }
 
     @Operation(summary = "Get a Brand by their name")
