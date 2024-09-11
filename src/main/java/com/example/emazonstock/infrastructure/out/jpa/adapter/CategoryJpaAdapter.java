@@ -14,6 +14,8 @@ import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
+import static com.example.emazonstock.infrastructure.utils.jpaconstants.JpaAdapterConstants.PAGEABLE_BY_NAME;
+
 @RequiredArgsConstructor
 public class CategoryJpaAdapter implements ICategoryPersistencePort{
 
@@ -33,7 +35,7 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort{
 
     @Override
     public PageResult<Category> getPagedCategories(Integer currentPage, Integer sizePage, String orderSort) {
-        Sort sort = Sort.by(Sort.Direction.fromString(orderSort), "name");
+        Sort sort = Sort.by(Sort.Direction.fromString(orderSort), PAGEABLE_BY_NAME);
         Pageable pageable = PageRequest.of(currentPage, sizePage, sort);
         Page<CategoryEntity> categoryEntityPage = categoryRepository.findAll(pageable);
         List<Category> categoryList = categoryEntityMapper.toCategoryList(categoryEntityPage.getContent());

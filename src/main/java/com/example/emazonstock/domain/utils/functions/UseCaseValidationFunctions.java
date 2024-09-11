@@ -14,7 +14,7 @@ import static com.example.emazonstock.domain.utils.constants.UseCaseCategoryCons
 public class UseCaseValidationFunctions{
 
     private UseCaseValidationFunctions() {
-        throw new IllegalStateException("Utility class");
+        throw new IllegalStateException(EXCEPTION_UTILITY_CLASS);
     }
 
     public static <T> void validateIfObjectExist(T object){

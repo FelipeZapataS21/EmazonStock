@@ -14,6 +14,8 @@ import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
+import static com.example.emazonstock.infrastructure.utils.jpaconstants.JpaAdapterConstants.PAGEABLE_BY_NAME;
+
 @RequiredArgsConstructor
 public class BrandJpaAdapter implements IBrandPersistencePort {
 
@@ -30,7 +32,7 @@ public class BrandJpaAdapter implements IBrandPersistencePort {
 
     @Override
     public PageResult<Brand> getPagedBrands(Integer currentPage, Integer sizePage, String orderSort) {
-        Sort sort = Sort.by(Sort.Direction.fromString(orderSort), "name");
+        Sort sort = Sort.by(Sort.Direction.fromString(orderSort), PAGEABLE_BY_NAME);
         Pageable pageable = PageRequest.of(currentPage, sizePage, sort);
         Page<BrandEntity> brandEntityPage = brandRepository.findAll(pageable);
         List<Brand> brandList = brandEntityMapper.toBrandList(brandEntityPage.getContent());
@@ -45,3 +47,5 @@ public class BrandJpaAdapter implements IBrandPersistencePort {
         );
     }
 }
+
+// MANDAR respuesta clara

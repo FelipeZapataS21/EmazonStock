@@ -32,9 +32,9 @@ public class CategoryRestController{
             @ApiResponse(responseCode = "409", description = "Category already exists", content = @Content)
     })
     @PostMapping("/")
-    public ResponseEntity<String> saveCategoryInCategories(@Valid @RequestBody CategoriesRequest categoriesRequest) {
+    public ResponseEntity<CategoriesRequest> saveCategoryInCategories(@Valid @RequestBody CategoriesRequest categoriesRequest) {
         categoryHandler.saveCategoryInCategories(categoriesRequest);
-        return new ResponseEntity<>("Category has been created succesfully!!", HttpStatus.CREATED);
+        return new ResponseEntity<>(categoriesRequest, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Get all the categories")
@@ -60,8 +60,7 @@ public class CategoryRestController{
     })
     @GetMapping("/{name}")
     public ResponseEntity<CategoriesResponse> getCategoryFromCategories(
-            @Parameter(description = "Name of the category to be returned")
-            @PathVariable(name = "name") String name) {
+            @Parameter @PathVariable String name) {
         return ResponseEntity.ok(categoryHandler.getCategoryFromCategories(name.trim()));
     }
 }

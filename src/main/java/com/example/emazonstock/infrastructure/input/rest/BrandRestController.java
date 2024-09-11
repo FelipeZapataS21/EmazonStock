@@ -32,9 +32,9 @@ public class BrandRestController {
             @ApiResponse(responseCode = "409", description = "Brand already exists", content = @Content)
     })
     @PostMapping("/")
-    public ResponseEntity<String> saveBrandInBrands(@Valid @RequestBody BrandsRequest brandsRequest) {
+    public ResponseEntity<BrandsRequest> saveBrandInBrands(@Valid @RequestBody BrandsRequest brandsRequest) {
         brandHandler.saveBrandInBrands(brandsRequest);
-        return new ResponseEntity<>("Brand has been created succesfully!!", HttpStatus.CREATED);
+        return new ResponseEntity<>(brandsRequest, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Get all the brands")
