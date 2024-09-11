@@ -54,7 +54,8 @@ public class CategoryRestController{
     @Operation(summary = "Get a category by their name")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "category found",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = CategoriesResponse.class))),
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CategoriesResponse.class))),
             @ApiResponse(responseCode = "404", description = "Category not found", content = @Content)
     })
     @GetMapping("/{name}")

@@ -3,6 +3,7 @@ package com.example.emazonstock.domain.usecase;
 import com.example.emazonstock.domain.api.IBrandServicePort;
 import com.example.emazonstock.domain.model.Brand;
 import com.example.emazonstock.domain.spi.IBrandPersistencePort;
+import static com.example.emazonstock.domain.utils.functions.UseCaseValidationFunctions.*;
 
 public class BrandUseCase implements IBrandServicePort {
 
@@ -13,11 +14,15 @@ public class BrandUseCase implements IBrandServicePort {
     }
 
     @Override
-    public void saveBrand(Brand category) {
+    public void saveBrand(Brand brand) {
+        validateIfObjectExist(brandPersistencePort.getBrand(brand.getName().trim()));
+        brandPersistencePort.saveBrand(brand);
     }
 
     @Override
     public Brand getBrand(String name) {
-        return null;
+        Brand brand = brandPersistencePort.getBrand(name);
+        validateGetObject(brand);
+        return brand;
     }
 }

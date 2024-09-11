@@ -1,8 +1,7 @@
 package com.example.emazonstock.application.mappers.requestmappers;
 
-
-import com.example.emazonstock.application.dto.request.CategoriesRequest;
-import com.example.emazonstock.domain.model.Category;
+import com.example.emazonstock.application.dto.request.BrandsRequest;
+import com.example.emazonstock.domain.model.Brand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -10,10 +9,10 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
-public interface CategoriesRequestMapper {
+public interface BrandRequestMapper {
 
-    @Mapping(target = "categoryId", ignore = true)
+    @Mapping(target = "brandId", ignore = true)
     @Mapping(source = "name", target = "name")
     @Mapping(source = "description", target = "description")
-    Category toCategory(CategoriesRequest categoriesRequest);
+    Brand toBrand(BrandsRequest brandsRequest);
 }

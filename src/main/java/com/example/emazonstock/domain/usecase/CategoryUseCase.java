@@ -23,8 +23,9 @@ public class CategoryUseCase implements ICategoryServicePort {
 
     @Override
     public Category getCategory(String name) {
-        validateGetObject(categoryPersistencePort.getCategory(name));
-        return categoryPersistencePort.getCategory(name);
+        Category category = categoryPersistencePort.getCategory(name);
+        validateGetObject(category);
+        return category;
     }
 
     @Override

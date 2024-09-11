@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import static com.example.emazonstock.application.utils.DtoCategoryConstants.*;
+import static com.example.emazonstock.application.utils.dtoconstants.PageResultDtoConstants.*;
 
 @Getter
 @Setter

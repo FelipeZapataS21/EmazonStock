@@ -7,9 +7,9 @@ import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.emazonstock.domain.utils.Constants.ExceptionsConstants.*;
-import static com.example.emazonstock.domain.utils.Constants.UseCaseCategoryConstants.VALUE_PAGE_SORT_ASC;
-import static com.example.emazonstock.domain.utils.Constants.UseCaseCategoryConstants.VALUE_PAGE_SORT_DESC;
+import static com.example.emazonstock.domain.utils.constants.ExceptionsConstants.*;
+import static com.example.emazonstock.domain.utils.constants.UseCaseCategoryConstants.VALUE_PAGE_SORT_ASC;
+import static com.example.emazonstock.domain.utils.constants.UseCaseCategoryConstants.VALUE_PAGE_SORT_DESC;
 
 public class UseCaseValidationFunctions{
 

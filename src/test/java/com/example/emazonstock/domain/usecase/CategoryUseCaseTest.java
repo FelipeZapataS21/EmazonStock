@@ -14,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.emazonstock.domain.utils.Constants.ExceptionsConstants.EXCEPTION_NOT_VALID_VALUE_PAGE_SORT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -115,7 +114,13 @@ class CategoryUseCaseTest {
         int pageSize = 10;
         String sort = "asc";
 
-        PageResult<Category> mockResult = new PageResult<>(mockData, currentPage, totalPages, totalItems, pageSize, sort);
+        PageResult<Category> mockResult = new PageResult<>(
+                mockData,
+                currentPage,
+                totalPages,
+                totalItems,
+                pageSize,
+                sort);
 
 
         when(categoryPersistencePort.getPagedCategories(currentPage, sizePage, validSort)).thenReturn(mockResult);
@@ -125,7 +130,8 @@ class CategoryUseCaseTest {
 
         // Assert
         assertEquals(mockResult, result);
-        verify(categoryPersistencePort, times(1)).getPagedCategories(currentPage, sizePage, validSort);
+        verify(categoryPersistencePort, times(1))
+                .getPagedCategories(currentPage, sizePage, validSort);
     }
 
     @Test
@@ -140,7 +146,7 @@ class CategoryUseCaseTest {
             categoryUseCase.getPagedCategories(currentPage, sizePage, invalidSort);
         });
 
-        assertEquals(EXCEPTION_NOT_VALID_VALUE_PAGE_SORT, exception.getMessage());
+        assertEquals("Not valid value for sort attribute, must be 'asc' or 'desc'", exception.getMessage());
         verify(categoryPersistencePort, never()).getPagedCategories(any(), any(), any());
     }
 }

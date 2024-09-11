@@ -28,8 +28,7 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort{
 
     @Override
     public Category getCategory(String name) {
-        return categoryEntityMapper.toCategory(categoryRepository.findByName(name).
-                orElse(null));
+        return categoryEntityMapper.toCategory(categoryRepository.findByName(name).orElse(null));
     }
 
     @Override
