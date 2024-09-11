@@ -5,7 +5,6 @@ import com.example.emazonstock.application.dto.request.PageResultRequest;
 import com.example.emazonstock.application.dto.response.BrandsResponse;
 import com.example.emazonstock.application.dto.response.PageResultResponse;
 import com.example.emazonstock.domain.model.Brand;
-import com.example.emazonstock.domain.model.PageResult;
 
 public interface IBrandHandler {
 

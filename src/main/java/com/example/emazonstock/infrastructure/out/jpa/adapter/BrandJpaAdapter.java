@@ -1,11 +1,9 @@
 package com.example.emazonstock.infrastructure.out.jpa.adapter;
 
 import com.example.emazonstock.domain.model.Brand;
-import com.example.emazonstock.domain.model.Category;
 import com.example.emazonstock.domain.model.PageResult;
 import com.example.emazonstock.domain.spi.IBrandPersistencePort;
 import com.example.emazonstock.infrastructure.out.jpa.entity.BrandEntity;
-import com.example.emazonstock.infrastructure.out.jpa.entity.CategoryEntity;
 import com.example.emazonstock.infrastructure.out.jpa.mapper.BrandEntityMapper;
 import com.example.emazonstock.infrastructure.out.jpa.repository.IBrandRepository;
 import lombok.RequiredArgsConstructor;
