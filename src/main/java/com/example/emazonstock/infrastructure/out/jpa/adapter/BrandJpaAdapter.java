@@ -48,4 +48,3 @@ public class BrandJpaAdapter implements IBrandPersistencePort {
     }
 }
 
-// MANDAR respuesta clara

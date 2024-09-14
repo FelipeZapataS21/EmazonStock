@@ -1,6 +1,5 @@
 package com.example.emazonstock.application.mappers.requestmappers;
 
-import com.example.emazonstock.application.dto.request.article.StringArticleRequest;
 import com.example.emazonstock.application.dto.request.article.ToArticleRequest;
 import com.example.emazonstock.domain.model.Article;
 import org.mapstruct.Mapper;
