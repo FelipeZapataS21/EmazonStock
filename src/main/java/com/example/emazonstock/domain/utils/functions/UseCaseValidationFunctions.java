@@ -1,8 +1,6 @@
 package com.example.emazonstock.domain.utils.functions;
 
-import com.example.emazonstock.domain.exceptions.AlreadyDeclaredValueException;
-import com.example.emazonstock.domain.exceptions.NotValidValuePageSort;
-import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
+import com.example.emazonstock.domain.exceptions.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +31,18 @@ public class UseCaseValidationFunctions{
         List<String> validSortValues = Arrays.asList(VALUE_PAGE_SORT_ASC,VALUE_PAGE_SORT_DESC);
         if(!validSortValues.contains(sortValue.toLowerCase())){
             throw new NotValidValuePageSort(EXCEPTION_NOT_VALID_VALUE_PAGE_SORT);
+        }
+    }
+
+    public static void validateIfRepeatCategories(Integer sizeNotRepeatCategories, Integer sizeCategories){
+        if(sizeNotRepeatCategories < sizeCategories){
+            throw new NotRepeatCategoryInArticle(EXCEPTION_NOT_VALID_REPEAT_CATEGORIES);
+        }
+    }
+
+    public static void validateLimitOfCategories(Integer limitOfCategories, Integer sizeCategoriesList){
+        if(limitOfCategories < sizeCategoriesList){
+            throw new ExceedNumberOfCategories(EXCEPTION_LIMIT_CATEGORIES_EXCEED);
         }
     }
 }

@@ -14,5 +14,6 @@ public interface BrandRequestMapper {
     @Mapping(target = "brandId", ignore = true)
     @Mapping(source = "name", target = "name")
     @Mapping(source = "description", target = "description")
+    @Mapping(target = "articles", ignore = true)
     Brand toBrand(BrandsRequest brandsRequest);
 }

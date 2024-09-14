@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "category")
 @NoArgsConstructor
@@ -20,4 +22,7 @@ public class CategoryEntity {
     private Long categoryId;
     private String name;
     private String description;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<ArticleEntity> articles;
 }

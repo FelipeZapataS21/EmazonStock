@@ -15,5 +15,6 @@ public interface CategoriesRequestMapper {
     @Mapping(target = "categoryId", ignore = true)
     @Mapping(source = "name", target = "name")
     @Mapping(source = "description", target = "description")
+    @Mapping(target = "articles", ignore = true)
     Category toCategory(CategoriesRequest categoriesRequest);
 }

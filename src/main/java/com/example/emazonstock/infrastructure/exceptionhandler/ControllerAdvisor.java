@@ -1,8 +1,6 @@
 package com.example.emazonstock.infrastructure.exceptionhandler;
 
-import com.example.emazonstock.domain.exceptions.AlreadyDeclaredValueException;
-import com.example.emazonstock.domain.exceptions.NotValidValuePageSort;
-import com.example.emazonstock.domain.exceptions.ValueDoesNotExist;
+import com.example.emazonstock.domain.exceptions.*;
 import com.example.emazonstock.domain.model.Exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +67,28 @@ public class ControllerAdvisor {
         Exceptions exceptions = new Exceptions(
                 HttpStatus.CONFLICT.value(),
                 notValidValuePageSort.getMessage(),
+                LocalDateTime.now().toString()
+        );
+        return new ResponseEntity<>(exceptions, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(NotRepeatCategoryInArticle.class)
+    public ResponseEntity<Exceptions> handleNotRepeatCategoryInArticle(
+            NotRepeatCategoryInArticle notRepeatCategoryInArticle) {
+        Exceptions exceptions = new Exceptions(
+                HttpStatus.CONFLICT.value(),
+                notRepeatCategoryInArticle.getMessage(),
+                LocalDateTime.now().toString()
+        );
+        return new ResponseEntity<>(exceptions, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ExceedNumberOfCategories.class)
+    public ResponseEntity<Exceptions> handleExceedNumberOfCategories(
+            ExceedNumberOfCategories exceedNumberOfCategories) {
+        Exceptions exceptions = new Exceptions(
+                HttpStatus.CONFLICT.value(),
+                exceedNumberOfCategories.getMessage(),
                 LocalDateTime.now().toString()
         );
         return new ResponseEntity<>(exceptions, HttpStatus.CONFLICT);
