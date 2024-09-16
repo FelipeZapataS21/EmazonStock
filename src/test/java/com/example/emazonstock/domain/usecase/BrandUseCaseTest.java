@@ -33,7 +33,7 @@ class BrandUseCaseTest {
     @Test
     void saveBrandTest() {
         //GIVEN
-        Brand brand = new Brand(1L,"CategoryName","CategoryDescription");
+        Brand brand = new Brand(1L,"CategoryName","CategoryDescription", null);
         //WHEN
         brandUseCase.saveBrand(brand);
         //THEN
@@ -43,7 +43,7 @@ class BrandUseCaseTest {
     @Test
     void saveBrandTestWhenBrandDoesNotExist() {
         //GIVEN
-        Brand brand = new Brand(1L,"CategoryName","CategoryDescription");
+        Brand brand = new Brand(1L,"CategoryName","CategoryDescription", null);
         //WHEN
         when(brandPersistencePort.getBrand(brand.getName().trim())).thenReturn(null);
         brandUseCase.saveBrand(brand);
@@ -55,7 +55,7 @@ class BrandUseCaseTest {
     @Test
     void SaveBrandWhenBrandAlreadyExistsTest() {
         // GIVEN
-        Brand brand = new Brand(1L, "CategoryName", "CategoryDescription");
+        Brand brand = new Brand(1L, "CategoryName", "CategoryDescription", null);
 
         //WHEN
         when(brandPersistencePort.getBrand(brand.getName().trim())).thenReturn(brand);
@@ -71,7 +71,7 @@ class BrandUseCaseTest {
     void getCategoryTest() {
         // GIVEN
         String categoryName = "ExistingCategory";
-        Brand expectedBrand = new Brand(1L, categoryName, "Description");
+        Brand expectedBrand = new Brand(1L, categoryName, "Description", null);
         given(brandPersistencePort.getBrand(categoryName)).willReturn(expectedBrand);
 
         // WHEN
@@ -105,8 +105,8 @@ class BrandUseCaseTest {
         String validSort = "asc";
 
         List<Brand> mockData = Arrays.asList(
-                new Brand(1L,"Brand1", "Description brand1"),
-                new Brand(2L,"Brand2", "Description brand2")
+                new Brand(1L,"Brand1", "Description brand1", null),
+                new Brand(2L,"Brand2", "Description brand2", null)
         );
 
         int totalPages = 5;

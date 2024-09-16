@@ -13,7 +13,7 @@ class CategoryTest {
         String name = "Electronics";
         String description = "Electronics new category";
 
-        Category category = new Category(id, name, description);
+        Category category = new Category(id, name, description, null);
 
         assertEquals(id, category.getCategoryId(), "Category ID should match.");
         assertEquals(name, category.getName(), "Category name should match.");
@@ -32,7 +32,7 @@ class CategoryTest {
         String description = "Electronics new category";
         String newDescription = "Sports new category";
 
-        Category category = new Category(id, name, description);
+        Category category = new Category(id, name, description, null);
         category.setCategoryId(newId);
         category.setName(newName);
         category.setDescription(newDescription);

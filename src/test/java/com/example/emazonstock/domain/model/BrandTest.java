@@ -13,7 +13,7 @@ class BrandTest {
         String name = "Adidas";
         String description = "Adidas new brand";
 
-        Brand brand = new Brand(id, name, description);
+        Brand brand = new Brand(id, name, description, null);
 
         assertEquals(id, brand.getBrandId(), "Brand ID should match.");
         assertEquals(name, brand.getName(), "Brand name should match.");
@@ -32,7 +32,7 @@ class BrandTest {
         String description = "Adidas new brand";
         String newDescription = "Nike new brand";
 
-        Brand brand = new Brand(id, name, description);
+        Brand brand = new Brand(id, name, description, null);
         brand.setBrandId(newId);
         brand.setName(newName);
         brand.setDescription(newDescription);

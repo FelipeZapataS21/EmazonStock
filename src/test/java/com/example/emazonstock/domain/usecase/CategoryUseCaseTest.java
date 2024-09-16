@@ -32,7 +32,7 @@ class CategoryUseCaseTest {
     @Test
     void saveCategoryTest() {
         //GIVEN
-        Category category = new Category(1L,"CategoryName","CategoryDescription");
+        Category category = new Category(1L,"CategoryName","CategoryDescription", null);
         //WHEN
         categoryUseCase.saveCategory(category);
         //THEN
@@ -43,7 +43,7 @@ class CategoryUseCaseTest {
     @Test
     void saveCategoryTestWhenCategoryDoesNotExist() {
         //GIVEN
-        Category category = new Category(1L,"CategoryName","CategoryDescription");
+        Category category = new Category(1L,"CategoryName","CategoryDescription", null);
         //WHEN
         when(categoryPersistencePort.getCategory(category.getName().trim())).thenReturn(null);
         categoryUseCase.saveCategory(category);
@@ -55,7 +55,7 @@ class CategoryUseCaseTest {
     @Test
     void SaveCategoryWhenCategoryAlreadyExistsTest() {
         // GIVEN
-        Category category = new Category(1L, "CategoryName", "CategoryDescription");
+        Category category = new Category(1L, "CategoryName", "CategoryDescription", null);
 
         //WHEN
         when(categoryPersistencePort.getCategory(category.getName().trim())).thenReturn(category);
@@ -71,7 +71,7 @@ class CategoryUseCaseTest {
     void getCategoryTest() {
         // GIVEN
         String categoryName = "ExistingCategory";
-        Category expectedCategory = new Category(1L, categoryName, "Description");
+        Category expectedCategory = new Category(1L, categoryName, "Description", null);
         given(categoryPersistencePort.getCategory(categoryName)).willReturn(expectedCategory);
 
         // WHEN
@@ -105,8 +105,8 @@ class CategoryUseCaseTest {
         String validSort = "asc";
 
         List<Category> mockData = Arrays.asList(
-                new Category(1L,"Category1", "Description category1"),
-                new Category(2L,"Category2", "Description category2")
+                new Category(1L,"Category1", "Description category1", null),
+                new Category(2L,"Category2", "Description category2", null)
         );
 
         int totalPages = 5;
