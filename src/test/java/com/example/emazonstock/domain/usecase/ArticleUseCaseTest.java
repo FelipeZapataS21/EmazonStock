@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static com.example.emazonstock.domain.utils.functions.UseCaseFunctions.categoryInstance;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -27,12 +28,15 @@ class ArticleUseCaseTest {
     @InjectMocks
     private ArticleUseCase articleUseCase;
 
+    Category category1 = categoryInstance(1);
+    Category category2 = categoryInstance(2);
+    Category category3 = categoryInstance(3);
+    Category category4 = categoryInstance(4);
+
     @Test
     void saveArticleWithValidArticleShouldCallSaveArticle() {
         // Arrange
         BigDecimal bigDecimal = new BigDecimal("165.9");
-        Category category1 = new Category(1L,"Category 1","Description",null);
-        Category category2 = new Category(2L,"Category 2","Description",null);
         Brand brand = new Brand(1L,"Brand", "test brand", null);
         Article article = new Article(
                 1L,
@@ -53,7 +57,6 @@ class ArticleUseCaseTest {
     void saveArticleWithRepeatedCategoriesShouldThrowException() {
 
         BigDecimal bigDecimal = new BigDecimal("165.9");
-        Category category1 = new Category(1L,"Category 1","Description",null);
         Brand brand = new Brand(1L,"Brand", "test brand", null);
         Article article = new Article(
                 1L,
@@ -72,10 +75,6 @@ class ArticleUseCaseTest {
     @Test
     void saveArticle_WithTooManyCategories_ShouldThrowException() {
         // Arrange
-        Category category1 = new Category(1L,"Category 1","Description",null);
-        Category category2 = new Category(2L,"Category 2","Description",null);
-        Category category3 = new Category(3L,"Category 3","Description",null);
-        Category category4 = new Category(4L,"Category 4","Description",null);
         BigDecimal bigDecimal = new BigDecimal("165.9");
         Brand brand = new Brand(1L,"Brand", "test brand", null);
 

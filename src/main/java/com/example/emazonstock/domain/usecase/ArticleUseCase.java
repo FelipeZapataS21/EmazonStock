@@ -25,10 +25,10 @@ public class ArticleUseCase implements IArticleServicePort {
         Set<String> categoriesName = article.getCategories().stream()
                 .map(Category::getName)
                 .collect(Collectors.toSet());
-        System.out.println("Antes de validar categorías duplicadas");
+
         validateIfRepeatCategories(categoriesName.size(), article.getCategories().size());
         validateLimitOfCategories(LIMIT_OF_CATEGORIES_IN_ARTICLE, article.getCategories().size());
-        System.out.println("Antes de guardar el artículo");
+
         articlePersistencePort.saveArticle(article);
     }
 }
