@@ -17,7 +17,6 @@ public interface CategoryEntityMapper {
     @Mapping(target = "articles", ignore = true)
     CategoryEntity toEntity(Category category);
 
-    @Mapping(target = "articles", ignore = true)
     Category toCategory(CategoryEntity categoryEntity);
 
     List<Category> toCategoryList(List<CategoryEntity> categoryEntityList);

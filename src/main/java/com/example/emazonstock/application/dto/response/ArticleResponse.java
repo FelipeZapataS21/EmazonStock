@@ -10,10 +10,10 @@ import java.util.List;
 @Setter
 public class ArticleResponse {
 
-    String name;
-    String description;
-    Integer amount;
-    BigDecimal price;
-    String brand;
-    List<String> categories;
+    private String name;
+    private String description;
+    private Integer amount;
+    private BigDecimal price;
+    private String brand;
+    private List<String> categories;
 }

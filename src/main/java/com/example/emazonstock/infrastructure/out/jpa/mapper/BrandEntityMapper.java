@@ -16,7 +16,6 @@ public interface BrandEntityMapper {
     @Mapping(target = "articles", ignore = true)
     BrandEntity toEntity(Brand brand);
 
-    @Mapping(target = "articles", ignore = true)
     Brand toBrand(BrandEntity brandEntity);
 
     List<Brand> toBrandList(List<BrandEntity> brandEntityList);

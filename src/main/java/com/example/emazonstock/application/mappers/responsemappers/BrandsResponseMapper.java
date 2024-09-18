@@ -13,6 +13,7 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface BrandsResponseMapper {
 
+    @Mapping(source = "brandId", target = "brandId")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "description", target = "description")
     BrandsResponse toResponse(Brand brand);

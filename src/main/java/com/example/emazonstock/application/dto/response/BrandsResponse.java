@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BrandsResponse {
-    String name;
-    String description;
+    private Long brandId;
+    private String name;
+    private String description;
 }

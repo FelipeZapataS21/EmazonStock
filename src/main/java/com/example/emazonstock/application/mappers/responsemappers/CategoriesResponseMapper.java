@@ -13,6 +13,7 @@ import java.util.List;
         unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CategoriesResponseMapper {
 
+    @Mapping(source = "categoryId", target = "categoryId")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "description", target = "description")
     CategoriesResponse toResponse(Category category);
@@ -21,6 +22,7 @@ public interface CategoriesResponseMapper {
         return categoriesList.stream()
                 .map(category -> {
                     CategoriesResponse categoriesResponse = new CategoriesResponse();
+                    categoriesResponse.setCategoryId(category.getCategoryId());
                     categoriesResponse.setName(category.getName());
                     categoriesResponse.setDescription(category.getDescription());
                     return categoriesResponse;
